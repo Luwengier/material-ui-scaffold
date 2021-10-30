@@ -1,27 +1,31 @@
 import React from 'react'
-import { Checkbox, Button } from '@mui/material'
-import { styled } from '@mui/material/styles'
-
-const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
-  color: theme.palette.secondary.dark,
-  '&.Mui-checked': {
-    color: theme.palette.secondary.light,
-  },
-}))
+import { Box } from '@mui/system'
+import ColorModeRadio from './ColorModeRadio'
+import withCustomizedTheme from './withCustomizedTheme'
+import MyTest from './MyTest'
 
 
 class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <CustomCheckbox defaultChecked />
-        <Button>123</Button>
-        <Button color="secondary">456</Button>
-        <Button color="neutral" variant="contained">456</Button>
-      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          borderRadius: 1,
+          p: 3,
+        }}
+      >
+        <ColorModeRadio />
+        <MyTest />
+      </Box>
     )
   }
 }
 
-export default App
+export default withCustomizedTheme(App)
