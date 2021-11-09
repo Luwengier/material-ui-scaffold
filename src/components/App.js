@@ -2,7 +2,8 @@ import React from 'react'
 import { Box } from '@mui/system'
 import ColorModeRadio from './ColorModeRadio'
 import withCustomizedTheme from './withCustomizedTheme'
-import MyTest from './MyTest'
+import { Counter } from '../features/counter/Counter'
+// import MyTest from './MyTest'
 
 
 class App extends React.Component {
@@ -22,7 +23,7 @@ class App extends React.Component {
         }}
       >
         <ColorModeRadio />
-        <MyTest />
+        <Counter />
       </Box>
     )
   }
