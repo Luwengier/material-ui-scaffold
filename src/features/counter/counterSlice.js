@@ -1,7 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+// replace import counterAPI in API file
+const counterAPI = {
+  fetchIncrementAmount: (amount) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve({ data: amount }), 2000);
+    })
+  }
+}
+
+export const fetchIncrementAmount = createAsyncThunk('counter/fetchIncrementAmount', async (incrementAmount, thunkAPI) => {
+  const response = await counterAPI.fetchIncrementAmount(incrementAmount)
+  console.log(response.data)
+  return response.data
+})
+
 
 const initialState = {
   value: 0,
+  loading: 'idle',
 }
 
 export const counterSlice = createSlice({
@@ -18,6 +34,15 @@ export const counterSlice = createSlice({
       state.value += action.payload
     },
   },
+  extraReducers: {
+    [fetchIncrementAmount.pending]: (state, action) => {
+      state.loading = 'pending'
+    },
+    [fetchIncrementAmount.fulfilled]: (state, action) => {
+      state.value += action.payload
+      state.loading = 'idle'
+    },
+  },
 })
 
 // Action creators are generated for each case reducer function
@@ -26,7 +51,7 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions
 export const incrementAsync = amount => dispatch => {
   setTimeout(() => {
     dispatch(incrementByAmount(amount))
-  })
+  }, 500)
 }
 
 export const selectCount = state => state.counter.value
