@@ -1,32 +1,19 @@
-import React from 'react'
-import { Box } from '@mui/system'
-import ColorModeRadio from './ColorModeRadio'
+import React, { Suspense, lazy } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import withCustomizedTheme from './withCustomizedTheme'
-import { Counter } from '../features/counter/Counter'
-// import MyTest from './MyTest'
 
+const MyTest = lazy(() => import('./MyTest'))
 
-class App extends React.Component {
-
-  render() {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          bgcolor: 'background.default',
-          color: 'text.primary',
-          borderRadius: 1,
-          p: 3,
-        }}
-      >
-        <ColorModeRadio />
-        <Counter />
-      </Box>
-    )
-  }
+const App = () => {
+  return (
+    <Router>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route exact path="/" element={<MyTest />} />
+        </Routes>
+      </Suspense>
+    </Router>
+  )
 }
 
 export default withCustomizedTheme(App)

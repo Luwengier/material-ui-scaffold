@@ -10,10 +10,8 @@ const counterAPI = {
 
 export const fetchIncrementAmount = createAsyncThunk('counter/fetchIncrementAmount', async (incrementAmount, thunkAPI) => {
   const response = await counterAPI.fetchIncrementAmount(incrementAmount)
-  console.log(response.data)
   return response.data
 })
-
 
 const initialState = {
   value: 0,
@@ -57,4 +55,3 @@ export const incrementAsync = amount => dispatch => {
 export const selectCount = state => state.counter.value
 
 export default counterSlice.reducer
-
