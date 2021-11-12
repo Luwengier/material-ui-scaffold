@@ -1,26 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useRef } from 'react'
 import { Box } from '@mui/system'
 import ColorModeRadio from './ColorModeRadio'
 import { Counter } from '../features/counter/Counter'
 
+import MyButton from './MyButton'
+
 // const audio = document.createElement('audio')
 // audio.setAttribute('id', 'my-audio')
+const MyTest = props => {
+  const [someState, setSomeState] = useState('zzz')
+  const buttonRef = useRef(null)
 
-
-const MyTest = () => {
-  const [myDOM, setMyDOM] = useState(null)
-
-  const memoAudio = useMemo(() => {
-    const audio = document.createElement('audio')
-    audio.setAttribute('id', 'my-audio')
-    return audio
-  }, [])
-
-  useEffect(() => {
-    setMyDOM(memoAudio)
-  }, [memoAudio])
-
-  console.log(myDOM)
+  console.log(buttonRef)
+  console.log(props)
 
   return (
     <Box
@@ -37,6 +29,13 @@ const MyTest = () => {
     >
       <ColorModeRadio />
       <Counter />
+      <MyButton
+        ref={buttonRef}
+        someState={someState}
+        setSomeState={setSomeState}
+      >
+        I am Button
+      </MyButton>
     </Box>
   )
 }

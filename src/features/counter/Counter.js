@@ -27,6 +27,7 @@ export function Counter() {
       <div>
         <button
           onClick={() => dispatch(fetchIncrementAmount(20))}
+          disabled={countLoading === 'pending'}
         >
           +20 later
         </button>
