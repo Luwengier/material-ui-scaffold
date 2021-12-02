@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { useMediaQuery, CssBaseline } from '@mui/material'
-import { amber, brown, teal, grey } from '@mui/material/colors';
+import { amber, teal, grey } from '@mui/material/colors';
 import ColorModeContext from '../contexts/ColorModeContext'
 
 const getDesignTokens = (mode) => ({
@@ -16,8 +16,8 @@ const getDesignTokens = (mode) => ({
     },
     ...(mode === 'dark' && {
       background: {
-        default: brown[900],
-        paper: brown[900],
+        default: grey[900],
+        paper: grey[900],
       },
     }),
     text: {

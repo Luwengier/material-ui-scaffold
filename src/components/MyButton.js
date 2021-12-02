@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '@mui/material'
 import logProps from './logProps'
 
 const MyButton = React.forwardRef((props, ref) => {
@@ -9,9 +10,9 @@ const MyButton = React.forwardRef((props, ref) => {
   console.log('MyButton', props)
 
   return (
-    <button ref={ref} className="MyButton" onClick={onButtonClick}>
+    <Button ref={ref} variant="contained" className="MyButton" onClick={onButtonClick}>
       {props.children}
-    </button>
+    </Button>
   )
 })
 

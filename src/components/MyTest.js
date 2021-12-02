@@ -2,17 +2,18 @@ import React, { useState, useRef } from 'react'
 import { Box } from '@mui/system'
 import ColorModeRadio from './ColorModeRadio'
 import { Counter } from '../features/counter/Counter'
+import { useGetPokemonByNameQuery } from '../slices/pokemonApiSlice'
 
 import MyButton from './MyButton'
 
-// const audio = document.createElement('audio')
-// audio.setAttribute('id', 'my-audio')
 const MyTest = props => {
   const [someState, setSomeState] = useState('zzz')
+  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur')
   const buttonRef = useRef(null)
 
-  console.log(buttonRef)
-  console.log(props)
+  console.log(data)
+  console.log(error)
+  console.log(isLoading)
 
   return (
     <Box
